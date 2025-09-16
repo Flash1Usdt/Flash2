@@ -1,268 +1,407 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Gateway - USDT via TRC20</title>
- 
-    <!-- Adding Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>متجرنا - تواصل معنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            color: #fff;
-            background-color: black;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0e17;
+            color: #00ff41;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 65, 0.05) 0%, transparent 20%);
+            padding: 20px;
+        }
+        
+        .promo-circle {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff41, #003311);
+            border: 3px solid #00ff41;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.7);
+            margin: 30px auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            overflow: hidden;
+            animation: rotate 20s linear infinite, glow 3s ease-in-out infinite alternate;
+            z-index: 5;
         }
- 
-        .container {
-            text-align: center;
-            padding: 20px;
-            max-width: 400px;
-            width: 100%;
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
- 
-        h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
- 
-        .barcode-container {
-            display: inline-block;
-            padding: 10px;
-            border-radius: 10px;
-            animation: glow 2s infinite alternate;
-            margin-bottom: 20px;
-        }
- 
-        .barcode-image {
-            width: 180px;
-            height: auto;
-            border-radius: 5px;
-        }
- 
-        /* Glowing animation */
+        
         @keyframes glow {
-            0% { box-shadow: 0 0 10px #ff0000, 0 0 20px #ff9900, 0 0 30px #00ff00, 0 0 40px #00ccff; }
-            50% { box-shadow: 0 0 15px #ff00ff, 0 0 25px #ffcc00, 0 0 35px #00ccff, 0 0 45px #ff0000; }
-            100% { box-shadow: 0 0 20px #00ff00, 0 0 30px #ff9900, 0 0 40px #ff00ff, 0 0 50px #00ccff; }
+            0% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.7); }
+            100% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.9); }
         }
- 
-        .usdt-text {
-            font-size: 1.2em;
-            color: #ffcc00;
-            font-weight: bold;
-            margin: 10px 0;
+        
+        .promo-circle::before {
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background-color: #001a00;
+            border: 2px solid #00ff41;
+            z-index: 1;
         }
- 
-        .wallet-address {
-            font-size: 1em;
-            background: #333;
-            padding: 8px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
+        
+        .promo-image {
+            position: relative;
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff41, #00cc33);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            overflow: hidden;
         }
- 
-        .copy-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
-            font-size: 0.9em;
-        }
- 
-        .copy-button:hover {
-            background-color: #0056b3;
-        }
- 
-        .input-field {
-            margin: 10px 0;
-            padding: 8px;
+        
+        .promo-image img {
             width: 100%;
-            font-size: 14px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
- 
-        .button {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
+        
+        .promo-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-conic-gradient(
+                transparent 0deg 10deg,
+                rgba(0, 255, 65, 0.1) 10deg 20deg
+            );
+            animation: rotate 10s linear infinite;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 900px;
+            padding: 30px;
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            background-color: rgba(10, 14, 23, 0.8);
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 65, 0.03) 10px,
+                rgba(0, 255, 65, 0.03) 20px
+            );
+            z-index: 0;
+            animation: scan 15s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #00ff41;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #00cc33;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            padding: 20px;
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            background-color: rgba(0, 20, 10, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .social-item:hover::before {
+            animation: shine 1s forwards;
+        }
+        
+        @keyframes shine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .social-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.4);
+            background-color: rgba(0, 30, 15, 0.5);
+        }
+        
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00ff41;
+            text-shadow: 0 0 8px #00ff41;
+        }
+        
+        .social-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .social-link {
+            color: #00ff41;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #00ff41;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 255, 65, 0.1);
+            text-align: center;
             width: 100%;
         }
- 
-        .button:hover {
-            background-color: #218838;
+        
+        .social-link:hover {
+            background-color: #00ff41;
+            color: #0a0e17;
         }
- 
-        .timer {
-            font-size: 1em;
-            color: #d9534f;
-            margin: 10px 0;
+        
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
         }
- 
-        /* Message Styling */
-        .message {
-            background-color: #007bff;
-            padding: 10px;
-            border-radius: 5px;
-            color: white;
+        
+        .glow-1 {
+            top: 10%;
+            left: 10%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .glow-2 {
+            bottom: 15%;
+            right: 15%;
+            width: 250px;
+            height: 250px;
+            animation: float 18s infinite ease-in-out reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(30px, -30px);
+            }
+            50% {
+                transform: translate(-20px, 20px);
+            }
+            75% {
+                transform: translate(-30px, -20px);
+            }
+        }
+        
+        .binary-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .binary-digit {
+            position: absolute;
+            color: rgba(0, 255, 65, 0.3);
+            font-family: 'Courier New', monospace;
             font-size: 14px;
-            margin-top: 10px;
-            display: none;
+            animation: fall linear infinite;
         }
- 
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
             }
- 
-            .barcode-image {
-                width: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            .social-container {
+                flex-direction: column;
+                align-items: center;
             }
- 
-            h2 {
-                font-size: 1.2em;
+            
+            .social-item {
+                width: 80%;
+                max-width: 250px;
             }
- 
-            .usdt-text {
-                font-size: 1em;
+            
+            h1 {
+                font-size: 2rem;
             }
- 
-            .wallet-address {
-                font-size: 0.9em;
-                padding: 6px;
-            }
- 
-            .copy-button, .button {
-                font-size: 0.9em;
-                padding: 8px;
-            }
- 
-            .timer {
-                font-size: 0.9em;
-            }
- 
-            .message {
-                font-size: 0.9em;
-                padding: 8px;
+            
+            .promo-circle {
+                width: 180px;
+                height: 180px;
             }
         }
     </style>
 </head>
 <body>
- 
-<div class="container">
-    <!-- Barcode Image with Glowing Border -->
-    <div class="barcode-container">
-        <img src="https://ugc.production.linktr.ee/94106f98-238c-40dd-9bad-907923c1dbcd_qr-code.png?io=true&size=avatar-v3_0" alt="Wallet Barcode" class="barcode-image">
-    </div>
-<script>
-    // Function to send a notification to the Telegram bot
-    function sendTelegramNotification() {
-        const botToken = "7652357474:AAG-lvX-g5VwNQm7GPXfFTqM7xIOfyZ8lJY"; // ضع التوكن الخاص بالبوت هنا
-        const chatId = "7073222421"; // ضع معرف الدردشة (Chat ID) هنا
-        const message = "📢 2تم الدخول إلى بوابة الدفع بواسطة مستخدم جديد!";
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    
+    <div class="container">
+        <h1>متاجر Visa 👾</h1>
+        <p class="subtitle">استفد من عروضنا الحصرية عبر 👾متاجرنا👾</p>
         
-        // Telegram API URL for sending a message
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
- 
-        // Sending the request
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    console.log("Notification sent to Telegram.");
-                } else {
-                    console.error("Failed to send notification.");
-                }
-            })
-            .catch(error => {
-                console.error("Telegram connection error:", error);
-            });
-    }
- 
-    // Call the function when the page loads
-    window.onload = sendTelegramNotification;
-</script>
- 
-    <!-- Main Content Below Barcode -->
-    <h2>Payment Gateway - USDT (TRC20)</h2>
-    <p class="usdt-text">Please send 500 USDT to the wallet address below:</p>
-    
-    <div class="wallet-address" id="wallet-address">TSDy3QRcTW5cYxZUnzMGmY2Fkjs4xGow4M</div>
-    <button class="copy-button" onclick="copyWalletAddress()">Copy</button>
- 
-    <p>After payment, enter your wallet address to confirm:</p>
-    <input type="text" id="wallet" class="input-field" placeholder="Enter your wallet address(TRC20) ">
-    
-    <button class="button" onclick="startPaymentProcess()">Complete Payment</button>
-    
-    <div class="timer" id="countdown">10:00</div>
- 
-    <!-- Message that will be displayed after payment -->
-    <div id="paymentMessage" class="message">
-        The payment is being verified, and the flash will be sent to your wallet shortly.
+        <div class="promo-circle">
+            <div class="promo-image">
+                <img src="https://i.postimg.cc/yNctgWyk/IMG-20250916-175434-124.jpg" alt="أسد">
+            </div>
+        </div>
+        
+        <div class="social-container">
+            <div class="social-item">
+                <i class="icon fab fa-telegram"></i>
+                <div class="social-name">متجرنا على تلكرام</div>
+                <a href="https://t.me/DARK7VIp_bot" class="social-link" target="_blank">انتقل إلى المتجر</a>
+            </div>
+            
+            <div class="social-item">
+                <i class="icon fab fa-youtube"></i>
+                <div class="social-name">قناتنا يوتيوب</div>
+                <a href="https://youtube.com/@vv9777?si=3e004t2JejC6DT78" class="social-link" target="_blank">اشترك في القناة</a>
+            </div>
+            
+            <div class="social-item">
+                <i class="icon fab fa-telegram"></i>
+                <div class="social-name">تواصل خاص على تلكرام</div>
+                <a href="https://t.me/silk_61" class="social-link" target="_blank">ارسل رسالة مباشرة</a>
+            </div>
+        </div>
     </div>
-</div>
- 
-<script>
-    // Function to copy wallet address to clipboard
-    function copyWalletAddress() {
-        const walletAddress = document.getElementById('wallet-address').textContent;
-        navigator.clipboard.writeText(walletAddress).then(() => {
-            alert("Wallet address copied to clipboard!");
-        }).catch(err => {
-            alert("Failed to copy address: " + err);
+    
+    <div class="binary-rain" id="binaryRain"></div>
+
+    <script>
+        // إنشاء تأثير المطر الرقمي (Binary Rain)
+        function createBinaryRain() {
+            const binaryRain = document.getElementById('binaryRain');
+            const digits = '010101010110111010100101';
+            const containerWidth = binaryRain.offsetWidth;
+            
+            for (let i = 0; i < 40; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
+                digit.style.left = `${Math.random() * containerWidth}px`;
+                digit.style.animationDuration = `${5 + Math.random() * 10}s`;
+                digit.style.animationDelay = `${Math.random() * 5}s`;
+                digit.style.opacity = `${0.1 + Math.random() * 0.3}`;
+                
+                binaryRain.appendChild(digit);
+            }
+        }
+        
+        // تشغيل تأثير المطر الرقمي عند تحميل الصفحة
+        window.addEventListener('load', createBinaryRain);
+        
+        // تأثيرات إضافية للدائرة
+        const promoCircle = document.querySelector('.promo-circle');
+        promoCircle.addEventListener('mouseover', () => {
+            promoCircle.style.animation = 'rotate 5s linear infinite, glow 1s ease-in-out infinite alternate';
         });
-    }
- 
-    // Countdown timer logic
-    let countdownElement = document.getElementById('countdown');
-    let timeLeft = 10 * 60;
- 
-    function updateCountdown() {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        countdownElement.innerHTML = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-        if (timeLeft > 0) {
-            timeLeft--;
-        } else {
-            alert("Time's up! Please try again.");
-            window.location.reload();
-        }
-    }
- 
-    setInterval(updateCountdown, 1000);
- 
-    // Function to handle payment and display the message
-    function startPaymentProcess() {
-        let wallet = document.getElementById('wallet').value;
-        if (wallet === "") {
-            alert("Please enter your wallet address.");
-            return;
-        }
-        document.getElementById('paymentMessage').style.display = "block";
-        setTimeout(function() {
-            alert("Payment has been successfully processed. Flash will be sent to your wallet.");
-        }, 3000);
-    }
-</script>
- 
+        
+        promoCircle.addEventListener('mouseout', () => {
+            promoCircle.style.animation = 'rotate 20s linear infinite, glow 3s ease-in-out infinite alternate';
+        });
+    </script>
 </body>
 </html>
- 
